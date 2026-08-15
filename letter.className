@@ -1,0 +1,130 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 10 - Password Validation</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f9f9f9;
+            padding: 40px;
+        }
+
+        .container {
+            background-color: #fff;
+            padding: 20px 30px;
+            border-radius: 8px;
+            max-width: 400px;
+            margin: 0 auto;
+            box-shadow: 0 4px 8px rgba(0,0,0,0.1);
+        }
+
+        input[type="password"] {
+            width: 100%;
+            padding: 10px;
+            margin-top: 8px;
+            margin-bottom: 20px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+        }
+
+        .message {
+            background-color: #f1f1f1;
+            padding: 15px;
+            border-radius: 4px;
+        }
+
+        .message h3 {
+            margin-top: 0;
+            font-size: 15px;
+            color: #333;
+        }
+
+        .message p {
+            margin: 8px 0;
+            font-size: 14px;
+            display: flex;
+            align-items: center;
+        }
+
+        /* الحالة غير المحققة (أحمر + ✖) */
+        .invalid {
+            color: red;
+        }
+        .invalid::before {
+            content: "✖";
+            margin-right: 10px;
+            font-weight: bold;
+        }
+
+        /* الحالة المحققة (أخضر + ✔) */
+        .valid {
+            color: green;
+        }
+        .valid::before {
+            content: "✔";
+            margin-right: 10px;
+            font-weight: bold;
+        }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <label for="psw"><b>Password</b></label>
+    <input type="password" id="psw" placeholder="Enter password" onkeyup="validatePassword()">
+
+    <div class="message">
+        <h3>Password must contain the following:</h3>
+        <p id="letter" class="invalid">A <b>lowercase</b> letter</p>
+        <p id="capital" class="invalid">A <b>capital (uppercase)</b> letter</p>
+        <p id="number" class="invalid">A <b>number</b></p>
+        <p id="length" class="invalid">Minimum <b>8 characters</b></p>
+    </div>
+</div>
+
+<script>
+function validatePassword() {
+    var myInput = document.getElementById("psw");
+    var letter = document.getElementById("letter");
+    var capital = document.getElementById("capital");
+    var number = document.getElementById("number");
+    var length = document.getElementById("length");
+
+    // 1. Check Lowercase
+    var lowerCaseLetters = /[a-z]/g;
+    if(myInput.value.match(lowerCaseLetters)) {
+        letter.className = "valid";
+    } else {
+        letter.className = "invalid";
+    }
+
+    // 2. Check Uppercase
+    var upperCaseLetters = /[A-Z]/g;
+    if(myInput.value.match(upperCaseLetters)) {
+        capital.className = "valid";
+    } else {
+        capital.className = "invalid";
+    }
+
+    // 3. Check Numbers
+    var numbers = /[0-9]/g;
+    if(myInput.value.match(numbers)) {
+        number.className = "valid";
+    } else {
+        number.className = "invalid";
+    }
+
+    // 4. Check Length
+    if(myInput.value.length >= 8) {
+        length.className = "valid";
+    } else {
+        length.className = "invalid";
+    }
+}
+</script>
+
+</body>
+</html>
