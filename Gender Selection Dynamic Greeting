@@ -1,0 +1,54 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 13 - Gender Greeting</title>
+    <style>
+        body { font-family: Arial, sans-serif; padding: 40px; background-color: #f4f4f9; }
+        .card { background: white; padding: 25px; border-radius: 8px; max-width: 400px; margin: auto; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+        .form-group { margin-bottom: 15px; }
+        label { display: block; margin-bottom: 5px; font-weight: bold; }
+        input, select { width: 100%; padding: 10px; box-sizing: border-box; border: 1px solid #ccc; border-radius: 4px; }
+        .result { margin-top: 20px; font-weight: bold; font-size: 18px; color: #0284c7; }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Task 13: Gender Selection</h2>
+    <div class="form-group">
+        <label for="fullName">Full Name:</label>
+        <input type="text" id="fullName" placeholder="Enter your name" oninput="updateGreeting()">
+    </div>
+    <div class="form-group">
+        <label for="gender">Select Gender:</label>
+        <select id="gender" onchange="updateGreeting()">
+            <option value="">-- Choose Gender --</option>
+            <option value="male">Male</option>
+            <option value="female">Female</option>
+        </select>
+    </div>
+
+    <!-- مكان ظهور النتيجة -->
+    <div id="greetingResult" class="result"></div>
+</div>
+
+<script>
+function updateGreeting() {
+    var name = document.getElementById("fullName").value.trim();
+    var gender = document.getElementById("gender").value;
+    var resultDiv = document.getElementById("greetingResult");
+
+    if (name === "" || gender === "") {
+        resultDiv.innerText = "";
+        return;
+    }
+
+    var prefix = (gender === "male") ? "Mr." : "Ms.";
+    resultDiv.innerText = "Your Name: " + prefix + " " + name;
+}
+</script>
+
+</body>
+</html>
