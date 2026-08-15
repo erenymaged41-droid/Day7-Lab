@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 21 - Modal Popup</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f5f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .open-btn {
+            background-color: #2563eb;
+            color: white;
+            padding: 12px 24px;
+            border: none;
+            border-radius: 6px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .open-btn:hover {
+            background-color: #1d4ed8;
+        }
+
+        /* خلفية المودال (Overlay) */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.5);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            opacity: 0;
+            pointer-events: none;
+            transition: opacity 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            pointer-events: auto;
+        }
+
+        /* كارت المودال */
+        .modal-card {
+            background-color: #ffffff;
+            padding: 25px 30px;
+            border-radius: 12px;
+            width: 360px;
+            box-shadow: 0 10px 25px rgba(0,0,0,0.2);
+            position: relative;
+            transform: translateY(-20px);
+            transition: transform 0.3s ease;
+        }
+
+        .modal-overlay.active .modal-card {
+            transform: translateY(0);
+        }
+
+        .close-btn {
+            position: absolute;
+            top: 15px;
+            right: 20px;
+            font-size: 22px;
+            font-weight: bold;
+            color: #64748b;
+            cursor: pointer;
+        }
+
+        .close-btn:hover {
+            color: #0f172a;
+        }
+
+        .modal-card h3 {
+            margin-top: 0;
+            color: #0f172a;
+        }
+
+        .modal-card p {
+            color: #475569;
+            line-height: 1.5;
+            font-size: 14px;
+        }
+    </style>
+</head>
+<body>
+
+    <button class="open-btn" onclick="toggleModal(true)">Open Modal Window</button>
+
+    <!-- Modal Container -->
+    <div class="modal-overlay" id="modalOverlay" onclick="closeOnOverlay(event)">
+        <div class="modal-card">
+            <span class="close-btn" onclick="toggleModal(false)">&times;</span>
+            <h3>Task 21: Modal Title</h3>
+            <p>This is an interactive modal popup created using HTML, CSS, and Vanilla JavaScript DOM manipulation.</p>
+        </div>
+    </div>
+
+    <script>
+        function toggleModal(show) {
+            const modal = document.getElementById("modalOverlay");
+            if (show) {
+                modal.classList.add("active");
+            } else {
+                modal.classList.remove("active");
+            }
+        }
+
+        // إغلاق النافذة عند الضغط خارج كارت المودال
+        function closeOnOverlay(event) {
+            if (event.target.id === "modalOverlay") {
+                toggleModal(false);
+            }
+        }
+    </script>
+
+</body>
+</html>
