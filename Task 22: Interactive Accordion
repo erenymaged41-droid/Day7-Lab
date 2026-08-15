@@ -1,0 +1,135 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 22 - Accordion FAQ</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8fafc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .accordion-card {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            width: 380px;
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #0f172a;
+            font-size: 20px;
+            margin-bottom: 20px;
+        }
+
+        .accordion-item {
+            border: 1px solid #e2e8f0;
+            border-radius: 6px;
+            margin-bottom: 10px;
+            overflow: hidden;
+        }
+
+        .accordion-header {
+            background-color: #f1f5f9;
+            padding: 12px 15px;
+            font-weight: bold;
+            color: #1e293b;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            user-select: none;
+            transition: background-color 0.2s;
+        }
+
+        .accordion-header:hover {
+            background-color: #e2e8f0;
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out, padding 0.3s ease;
+            background-color: #ffffff;
+            color: #475569;
+            font-size: 14px;
+            line-height: 1.5;
+            padding: 0 15px;
+        }
+
+        .accordion-item.active .accordion-content {
+            max-height: 100px;
+            padding: 12px 15px;
+        }
+
+        .accordion-item.active .icon {
+            transform: rotate(180deg);
+        }
+
+        .icon {
+            transition: transform 0.3s;
+            font-size: 12px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="accordion-card">
+    <h2>Task 22: FAQ Accordion</h2>
+
+    <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span>What is HTML5?</span>
+            <span class="icon">▼</span>
+        </div>
+        <div class="accordion-content">
+            HTML5 is the latest version of Hypertext Markup Language used for structuring web content.
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span>What is CSS3?</span>
+            <span class="icon">▼</span>
+        </div>
+        <div class="accordion-content">
+            CSS3 is used for styling and layout design of web pages, adding animations and responsiveness.
+        </div>
+    </div>
+
+    <div class="accordion-item">
+        <div class="accordion-header" onclick="toggleAccordion(this)">
+            <span>What is JavaScript?</span>
+            <span class="icon">▼</span>
+        </div>
+        <div class="accordion-content">
+            JavaScript is a dynamic programming language used to build interactive features on websites.
+        </div>
+    </div>
+</div>
+
+<script>
+    function toggleAccordion(header) {
+        const item = header.parentElement;
+        const allItems = document.querySelectorAll('.accordion-item');
+
+        allItems.forEach(i => {
+            if (i !== item) {
+                i.classList.remove('active');
+            }
+        });
+
+        item.classList.toggle('active');
+    }
+</script>
+
+</body>
+</html>
