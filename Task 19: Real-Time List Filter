@@ -1,0 +1,103 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 19 - Real-Time Search Filter</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f1f5f9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .card {
+            background: #ffffff;
+            padding: 25px;
+            border-radius: 10px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+            width: 360px;
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #0f172a;
+            font-size: 20px;
+        }
+
+        input[type="text"] {
+            width: 100%;
+            padding: 10px;
+            border: 2px solid #cbd5e1;
+            border-radius: 6px;
+            box-sizing: border-box;
+            font-size: 14px;
+            margin-bottom: 15px;
+            outline: none;
+        }
+
+        input[type="text"]:focus {
+            border-color: #0284c7;
+        }
+
+        ul {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        li {
+            padding: 10px 12px;
+            border-bottom: 1px solid #e2e8f0;
+            color: #334155;
+            transition: background 0.2s;
+        }
+
+        li:last-child {
+            border-bottom: none;
+        }
+
+        li.hidden {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+
+<div class="card">
+    <h2>Task 19: Search Filter</h2>
+    <input type="text" id="searchInput" placeholder="Search technology..." onkeyup="filterList()">
+    
+    <ul id="itemList">
+        <li>JavaScript</li>
+        <li>HTML5</li>
+        <li>CSS3</li>
+        <li>React.js</li>
+        <li>Node.js</li>
+        <li>Python</li>
+        <li>TypeScript</li>
+    </ul>
+</div>
+
+<script>
+    function filterList() {
+        const query = document.getElementById("searchInput").value.toLowerCase();
+        const items = document.querySelectorAll("#itemList li");
+
+        items.forEach(item => {
+            const text = item.textContent.toLowerCase();
+            if (text.includes(query)) {
+                item.classList.remove("hidden");
+            } else {
+                item.classList.add("hidden");
+            }
+        });
+    }
+</script>
+
+</body>
+</html>
