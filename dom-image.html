@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>DOM Image</title>
+</head>
+
+<body>
+
+    <h1>DOM Image Example</h1>
+
+    <div id="myDiv">
+        <p id="first">First element</p>
+        <p id="second">Second element</p>
+    </div>
+
+    <button onclick="addImage()">Add Image</button>
+    <button onclick="removeImage()">Remove Image</button>
+
+    <script>
+        let myDiv = document.getElementById("myDiv");
+        let newImage;
+
+        function addImage() {
+            newImage = document.createElement("img");
+
+            newImage.setAttribute(
+                "src",
+                "https://picsum.photos/id/1025/200/150"
+            );
+
+            newImage.setAttribute("alt", "New Image");
+
+            let secondElement = document.getElementById("second");
+
+            myDiv.insertBefore(newImage, secondElement);
+
+            alert(
+                "Number of child nodes: " +
+                myDiv.childNodes.length
+            );
+        }
+
+        function removeImage() {
+            if (newImage) {
+                myDiv.removeChild(newImage);
+                newImage = null;
+            }
+        }
+    </script>
+
+</body>
+</html>
