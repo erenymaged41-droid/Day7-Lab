@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Animated Search</title>
+</head>
+
+<body>
+
+    <h1>Animated Search</h1>
+
+    <input type="text" id="search" placeholder="Search..." style="width: 150px;">
+
+    <script>
+        let search = document.getElementById("search");
+
+        let width = 150;
+        let timer;
+
+        search.onfocus = function () {
+            clearInterval(timer);
+
+            timer = setInterval(function () {
+                width += 10;
+                search.style.width = width + "px";
+
+                if (width >= 400) {
+                    clearInterval(timer);
+                }
+            }, 30);
+        };
+
+        search.onblur = function () {
+            clearInterval(timer);
+
+            timer = setInterval(function () {
+                width -= 10;
+                search.style.width = width + "px";
+
+                if (width <= 150) {
+                    clearInterval(timer);
+                }
+            }, 30);
+        };
+    </script>
+
+</body>
+  </html>
