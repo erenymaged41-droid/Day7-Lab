@@ -1,0 +1,60 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>5 Star Rating</title>
+
+    <style>
+        .star {
+            font-size: 40px;
+            color: gray;
+            cursor: pointer;
+        }
+
+        .selected {
+            color: gold;
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1>5 Star Rating</h1>
+
+    <div id="rating">
+        <span class="star" data-value="1">★</span>
+        <span class="star" data-value="2">★</span>
+        <span class="star" data-value="3">★</span>
+        <span class="star" data-value="4">★</span>
+        <span class="star" data-value="5">★</span>
+    </div>
+
+    <p id="result">Rating: 0</p>
+
+    <script>
+        let stars = document.querySelectorAll(".star");
+
+        stars.forEach(function(star) {
+
+            star.addEventListener("click", function() {
+
+                let rating = Number(star.dataset.value);
+
+                stars.forEach(function(s) {
+                    let value = Number(s.dataset.value);
+
+                    if (value <= rating) {
+                        s.classList.add("selected");
+                    } else {
+                        s.classList.remove("selected");
+                    }
+                });
+
+                document.getElementById("result").innerHTML =
+                    "Rating: " + rating;
+            });
+
+        });
+    </script>
+
+</body>
+</html>
