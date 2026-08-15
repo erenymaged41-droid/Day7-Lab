@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Image Slideshow</title>
+
+    <style>
+        #gallery {
+            width: 500px;
+            margin: auto;
+            text-align: center;
+        }
+
+        #image {
+            width: 500px;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        #caption {
+            display: none;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 10px;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="gallery">
+
+    <img id="image"
+         src="https://picsum.photos/id/1015/500/300">
+
+    <div id="caption">Beautiful Nature</div>
+
+    <button id="prev">Prev</button>
+    <button id="next">Next</button>
+
+</div>
+
+<script>
+
+    let images = [
+        {
+            src: "https://picsum.photos/id/1015/500/300",
+            caption: "Beautiful Nature"
+        },
+        {
+            src: "https://picsum.photos/id/1016/500/300",
+            caption: "Mountain View"
+        },
+        {
+            src: "https://picsum.photos/id/1018/500/300",
+            caption: "Amazing Landscape"
+        }
+    ];
+
+    let current = 0;
+
+    let image = document.getElementById("image");
+    let caption = document.getElementById("caption");
+
+    function showImage() {
+        image.src = images[current].src;
+        caption.innerHTML = images[current].caption;
+    }
+
+    document.getElementById("next").onclick = function () {
+        current++;
+
+        if (current >= images.length) {
+            current = 0;
+        }
+
+        showImage();
+    };
+
+    document.getElementById("prev").onclick = function () {
+        current--;
+
+        if (current < 0) {
+            current = images.length - 1;
+        }
+
+        showImage();
+    };
+
+    let timer = setInterval(function () {
+        current++;
+
+        if (current >= images.length) {
+            current = 0;
+        }
+
+        showImage();
+
+    }, 2000);
+
+    image.onmouseover = function () {
+        clearInterval(timer);
+        caption.style.display = "block";
+    };
+
+    image.onmouseout = function () {
+        caption.style.display = "none";
+
+        timer = setInterval(function () {
+            current++;
+
+            if (current >= images.length) {
+                current = 0;
+            }
+
+            showImage();
+
+        }, 2000);
+    };
+
+</script>
+
+</body>
+</html>
