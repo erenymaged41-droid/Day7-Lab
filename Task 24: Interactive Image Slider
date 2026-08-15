@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 24 - Image Slider</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f8fafc;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .slider-card {
+            position: relative;
+            width: 380px;
+            background: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+            overflow: hidden;
+        }
+
+        .slide {
+            display: none;
+            height: 220px;
+            align-items: center;
+            justify-content: center;
+            color: #ffffff;
+            font-size: 26px;
+            font-weight: bold;
+            text-shadow: 0 2px 4px rgba(0, 0, 0, 0.4);
+        }
+
+        .slide.active {
+            display: flex;
+        }
+
+        /* أزرار التنقل */
+        .nav-btn {
+            position: absolute;
+            top: 50%;
+            transform: translateY(-50%);
+            background: rgba(0, 0, 0, 0.3);
+            color: #ffffff;
+            border: none;
+            padding: 10px 14px;
+            font-size: 18px;
+            cursor: pointer;
+            border-radius: 50%;
+            transition: background 0.2s;
+        }
+
+        .nav-btn:hover {
+            background: rgba(0, 0, 0, 0.7);
+        }
+
+        .prev { left: 12px; }
+        .next { right: 12px; }
+
+        /* النقاط السفلية (Indicators) */
+        .dots-container {
+            display: flex;
+            justify-content: center;
+            padding: 12px;
+            gap: 8px;
+            background-color: #ffffff;
+        }
+
+        .dot {
+            width: 10px;
+            height: 10px;
+            background-color: #cbd5e1;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: background-color 0.2s;
+        }
+
+        .dot.active {
+            background-color: #2563eb;
+        }
+    </style>
+</head>
+<body>
+
+<div class="slider-card">
+    <!-- الشرائح (Slides) -->
+    <div class="slide active" style="background-color: #2563eb;">Slide 1</div>
+    <div class="slide" style="background-color: #059669;">Slide 2</div>
+    <div class="slide" style="background-color: #d97706;">Slide 3</div>
+
+    <!-- أزرار التالي والسابق -->
+    <button class="nav-btn prev" onclick="changeSlide(-1)">&#10094;</button>
+    <button class="nav-btn next" onclick="changeSlide(1)">&#10095;</button>
+
+    <!-- مؤشرات التنقل -->
+    <div class="dots-container">
+        <span class="dot active" onclick="goToSlide(0)"></span>
+        <span class="dot" onclick="goToSlide(1)"></span>
+        <span class="dot" onclick="goToSlide(2)"></span>
+    </div>
+</div>
+
+<script>
+    let currentIndex = 0;
+    const slides = document.querySelectorAll('.slide');
+    const dots = document.querySelectorAll('.dot');
+
+    function updateSlider(index) {
+        if (index >= slides.length) currentIndex = 0;
+        else if (index < 0) currentIndex = slides.length - 1;
+        else currentIndex = index;
+
+        slides.forEach((slide, i) => {
+            slide.classList.toggle('active', i === currentIndex);
+        });
+
+        dots.forEach((dot, i) => {
+            dot.classList.toggle('active', i === currentIndex);
+        });
+    }
+
+    function changeSlide(direction) {
+        updateSlider(currentIndex + direction);
+    }
+
+    function goToSlide(index) {
+        updateSlider(index);
+    }
+</script>
+
+</body>
+</html>
