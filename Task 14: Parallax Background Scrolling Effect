@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 14 - Parallax Effect</title>
+    <style>
+        body, html {
+            height: 100%;
+            margin: 0;
+            font-family: Arial, sans-serif;
+            color: #333;
+        }
+
+        /* الجزء الأساسي لتأثير الـ Parallax */
+        .parallax {
+            background-image: url('https://picsum.photos/1600/900');
+            min-height: 100vh;
+            background-attachment: fixed;
+            background-position: center;
+            background-repeat: no-repeat;
+            background-size: cover;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+        }
+
+        .hero-text {
+            color: white;
+            text-align: center;
+            background-color: rgba(0, 0, 0, 0.6);
+            padding: 20px 40px;
+            border-radius: 8px;
+        }
+
+        .content-section {
+            padding: 50px 20px;
+            background-color: #f4f4f9;
+            text-align: center;
+            line-height: 1.8;
+        }
+
+        .container {
+            max-width: 800px;
+            margin: auto;
+        }
+    </style>
+</head>
+<body>
+
+    <!-- قسم الـ Parallax الأول -->
+    <div class="parallax">
+        <div class="hero-text">
+            <h1>Task 14: Parallax Scrolling</h1>
+            <p>Scroll down to see the background effect</p>
+        </div>
+    </div>
+
+    <!-- محتوى نصي للتمرير فوق الخلفية -->
+    <div class="content-section">
+        <div class="container">
+            <h2>Section Content</h2>
+            <p>
+                Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et dolore magna aliqua. 
+                Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat.
+            </p>
+            <p>
+                Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
+                Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.
+            </p>
+        </div>
+    </div>
+
+    <!-- قسم Parallax ثانٍ للتنويع -->
+    <div class="parallax" style="background-image: url('https://picsum.photos/1600/901');">
+        <div class="hero-text">
+            <h2>Second Parallax Section</h2>
+        </div>
+    </div>
+
+</body>
+</html>
