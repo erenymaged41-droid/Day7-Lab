@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Photo Gallery</title>
+
+    <style>
+        #gallery {
+            width: 500px;
+            margin: auto;
+            text-align: center;
+        }
+
+        #gallery img {
+            width: 500px;
+            height: 300px;
+            object-fit: cover;
+        }
+
+        button {
+            padding: 10px 20px;
+            margin: 10px 5px;
+        }
+    </style>
+</head>
+
+<body>
+
+<div id="gallery">
+
+    <img id="photo" src="https://picsum.photos/id/1015/500/300">
+
+    <div>
+        <button id="play">Play</button>
+        <button id="stop">Stop</button>
+        <button id="prev">Previous</button>
+        <button id="next">Next</button>
+    </div>
+
+</div>
+
+<script>
+
+    let photos = [
+        "https://picsum.photos/id/1015/500/300",
+        "https://picsum.photos/id/1016/500/300",
+        "https://picsum.photos/id/1018/500/300",
+        "https://picsum.photos/id/1020/500/300"
+    ];
+
+    let current = 0;
+    let timer = null;
+
+    let photo = document.getElementById("photo");
+    let gallery = document.getElementById("gallery");
+
+    function showNext() {
+        current++;
+
+        if (current >= photos.length) {
+            current = 0;
+        }
+
+        photo.src = photos[current];
+    }
+
+    function showPrevious() {
+        current--;
+
+        if (current < 0) {
+            current = photos.length - 1;
+        }
+
+        photo.src = photos[current];
+    }
+
+    function play() {
+        if (timer === null) {
+            timer = setInterval(showNext, 500);
+        }
+    }
+
+    function stop() {
+        clearInterval(timer);
+        timer = null;
+    }
+
+    document.getElementById("play").onclick = play;
+
+    document.getElementById("stop").onclick = stop;
+
+    document.getElementById("next").onclick = function () {
+        stop();
+        showNext();
+    };
+
+    document.getElementById("prev").onclick = function () {
+        stop();
+        showPrevious();
+    };
+
+    gallery.onmouseover = function () {
+        play();
+    };
+
+</script>
+
+</body>
+</html>
