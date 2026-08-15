@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Task 18 - Digital Clock</title>
+    <style>
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background-color: #0f172a;
+            color: #ffffff;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            margin: 0;
+        }
+
+        .clock-card {
+            background: #1e293b;
+            padding: 30px 40px;
+            border-radius: 16px;
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.5);
+            text-align: center;
+            border: 1px solid #334155;
+        }
+
+        h2 {
+            margin-top: 0;
+            color: #38bdf8;
+            font-size: 22px;
+            margin-bottom: 20px;
+        }
+
+        .clock {
+            font-size: 48px;
+            font-weight: bold;
+            letter-spacing: 2px;
+            color: #f8fafc;
+            font-family: monospace;
+        }
+
+        .ampm {
+            font-size: 20px;
+            color: #38bdf8;
+            margin-left: 5px;
+        }
+    </style>
+</head>
+<body>
+
+<div class="clock-card">
+    <h2>Task 18: Digital Clock</h2>
+    <div class="clock" id="clockDisplay">00:00:00 <span class="ampm" id="ampmDisplay">AM</span></div>
+</div>
+
+<script>
+    function updateClock() {
+        const now = new Date();
+        let hours = now.getHours();
+        let minutes = now.getMinutes();
+        let seconds = now.getSeconds();
+        let ampm = hours >= 12 ? 'PM' : 'AM';
+
+        // تحويل نظام 24 ساعة إلى 12 ساعة
+        hours = hours % 12;
+        hours = hours ? hours : 12; // الساعة 0 تصبح 12
+
+        // إضافة 0 جهة اليسار إذا كان الرقم أقل من 10
+        hours = hours < 10 ? '0' + hours : hours;
+        minutes = minutes < 10 ? '0' + minutes : minutes;
+        seconds = seconds < 10 ? '0' + seconds : seconds;
+
+        document.getElementById('clockDisplay').childNodes[0].textContent = `${hours}:${minutes}:${seconds} `;
+        document.getElementById('ampmDisplay').textContent = ampm;
+    }
+
+    // تشغيل الدالة فوراً ثم تكرارها كل ثانية
+    updateClock();
+    setInterval(updateClock, 1000);
+</script>
+
+</body>
+</html>
